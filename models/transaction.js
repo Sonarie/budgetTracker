@@ -17,6 +17,11 @@ const transactionSchema = new Schema(
       type: Date,
       default: Date.now
     }
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
   }
 );
 
