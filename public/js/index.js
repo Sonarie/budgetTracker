@@ -89,7 +89,7 @@ request.onupgradeneeded = function(event){
 request.onsuccess = function(event){
     db = event.target.result;
     if (navigator.onLine) {
-        sendTransaction();
+        uploadTransaction();
     }
 };
 
@@ -103,8 +103,40 @@ function saveRecord(record) {
     budgetObjectStore.add(record);
 };
 
+function uploadTransaction() {
+  const transaction = db.transaction(['new_transaction'], 'readwrite');
+  const budgetObjectStore = transaction.objectStore('new_transaction');
+  const getAll = budgetObjectStore.getAll();
+
+  getAll.onsuccess = function () {
+    if (getAll.result.length > 0) {
+      fetch("/api/transaction/bulk", {
+        method: "POST",
+        body: JSON.stringify(getAll.result),
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((serverResponse) => {
+          if (serverResponse.message) {
+            throw new Error(serverResponse);
+          }
+          const transaction = db.transaction(["new_transaction"], "readwrite");
+          const budgetObjectStore = transaction.objectStore("new_transaction");
+          budgetObjectStore.clear();
+
+          alert("All saved transactions has been submitted!");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+}
+
 function sendTransaction(isAdding) {
-  console.log("type anything")
   let nameEl = document.querySelector("#t-name");
   let amountEl = document.querySelector("#t-amount");
   let errorEl = document.querySelector(".form .error");
@@ -177,3 +209,5 @@ document.querySelector("#add-btn").onclick = function() {
 document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);
 };
+
+window.addEventListener("online", uploadTransaction);
