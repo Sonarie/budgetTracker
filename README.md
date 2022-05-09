@@ -1,11 +1,44 @@
 # budgetTracker
-AS AN avid traveler
-I WANT to be able to track my withdrawals and deposits with or without a data/internet connection
-SO THAT my account balance is accurate when I am traveling 
 
 
-GIVEN a budget tracker without an internet connection
-WHEN the user inputs an expense or deposit
-THEN they will receive a notification that they have added an expense or deposit
-WHEN the user reestablishes an internet connection
-THEN the deposits or expenses added while they were offline are added to their transaction history and their totals are updated
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [License](#license)
+  https://choosealicense.com/licenses/mit/
+- [Questions](#questions)
+
+## Description
+
+The Budget Tracker allows users to track the withdrawls and deposits into an account to track a budget. The User will be able to access the data even without any internet service.
+
+![image](https://user-images.githubusercontent.com/94268540/167331514-0383a30f-83af-4894-9d64-afb1a3b40fce.png)
+
+
+## Installation
+
+MongoDb, MongoDB Atlas, Mongoose, IndexDB
+
+## Usage
+
+to create budget for everyone
+
+## Contributing
+
+just me
+
+## Tests
+
+none
+
+## License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions
+
+## Questions
+
+none
